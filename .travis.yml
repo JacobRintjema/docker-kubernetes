@@ -8,4 +8,18 @@ before_install:
     
 script:
     - docker run -e CI=true rintjema/docker-kubernetes npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "docker-kubernetes"
+    env: "Dockerkubernetes-env"
+    bucket_name: "elasticbeanstalk-us-east-2-215534744617"
+    bucket_path: "docker-kubernetes"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+    Dockerkubernetes-env.eba-bt299gg2.us-east-2.elasticbeanstalk.com 
       
