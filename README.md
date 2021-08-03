@@ -7,6 +7,6 @@ Repository for Docker and Kubernetes: The Complete Guide by Stephen Grider
 
 - CI/CD pipelines, Travis CI, AWS
 
-- Multi-container applications (NodeJs, React, Redis, Postgres) deployed to AWS
+- Multi-container applications (NodeJs, React, Redis, Postgres, Nginx) deployed to AWS (Elastic Beanstalk, S3)
 
 - Production-ready Kubernetes Cluster deployment to Google Cloud
