@@ -1,0 +1,25 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t rintjema/docker-kubernetes -f ./client/Dockerfile.dev .
+
+script:
+    - docker run -e CI=true rintjema/docker-kubernetes npm test
+
+after_success:
+    - docker build -t rintjema/multi-client ./client
+    - docker build -t rintjema/multi-nginx ./nginx
+    - docker build -t rintjema/multi-server ./server
+    - docker build -t rintjema/multi-worker ./worker
+
+    # log in to Docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+    # push images to Dockerhub
+    - docker push rintjema/multi-client
+    - docker push rintjema/multi-nginx
+    - docker push rintjema/multi-server
+    - docker push rintjema/multi-worker
+
